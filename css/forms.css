@@ -1,0 +1,21 @@
+.input-base {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1.4rem;
+
+  font-family: var(--font-jp), var(--font-ui);
+
+  color: var(--fg);
+  background: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: var(--radius);
+
+  resize: none;
+  outline: none;
+  transition: 0.15s ease;
+}
+
+.input-base:focus {
+  border-color: var(--form-border-focus);
+  background: var(--form-bg-focus);
+}

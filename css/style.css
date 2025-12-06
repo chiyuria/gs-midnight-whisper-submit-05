@@ -1,0 +1,277 @@
+:root {
+  --font-ui: "Inter", "Roboto", system-ui, sans-serif;
+  --font-jp: "Noto Sans JP", "Zen Kaku Gothic New", sans-serif;
+  --font-accent: "Outfit", "Inter", sans-serif;
+
+  --brand-1: #b59aff;
+  --brand-2: #8a6cff;
+
+  --fg: #f5f6fa;
+  --fg-muted: rgba(245, 246, 250, 0.55);
+
+  --bg: #080a0f;
+  --panel: rgba(255, 255, 255, 0.03);
+
+  --btn-primary-bg: var(--brand-2);
+  --btn-primary-hover: var(--brand-1);
+  --btn-primary-fg: #fff;
+
+  --form-bg: rgba(255, 255, 255, 0.04);
+  --form-bg-focus: rgba(255, 255, 255, 0.08);
+  --form-border: rgba(255, 255, 255, 0.12);
+  --form-border-focus: var(--brand-1);
+
+  --radius: 8px;
+
+  --space-1: 0.6rem;
+  --space-2: 1.2rem;
+  --space-3: 2rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ui), var(--font-jp);
+}
+
+.jp-heavy {
+  font-family: var(--font-jp);
+}
+
+.app-header {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+}
+
+.header-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.header-logo {
+  height: 4rem;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 5rem);
+}
+
+.col-right {
+  width: 50%;
+  margin: 0 auto;
+  flex: 1;
+  padding: var(--space-3);
+  background: var(--panel);
+  border-right: none;
+}
+
+.col {
+  box-sizing: border-box;
+}
+
+.col-title {
+  color: var(--fg-muted);
+}
+
+/* ---- Panel ---- */
+
+.panel {
+  padding: var(--space-2);
+  background: var(--panel);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-body.talk-room {
+  height: calc(100vh - 36rem); /* 1カラム化に合わせて調整 */
+  overflow-y: auto;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+/* Scrollbar */
+.section-body.talk-room::-webkit-scrollbar {
+  width: 0.4rem;
+}
+.section-body.talk-room::-webkit-scrollbar-thumb {
+  background: var(--brand-2);
+  border-radius: 0.6rem;
+}
+
+/* ---- Message ---- */
+
+.msg-header {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.msg-time {
+  font-size: 1rem;
+  color: #9a9a9a;
+}
+
+.msg-text {
+  padding: 0.8rem 1.2rem;
+  max-width: 75%;
+  line-height: 1.55;
+  font-size: 1.4rem;
+  white-space: pre-wrap;
+  border-radius: 1.2rem;
+  backdrop-filter: blur(6px);
+}
+
+.my-msg .msg-header {
+  justify-content: flex-end;
+}
+
+.my-msg .msg-text {
+  margin-left: auto;
+  background: rgba(181, 154, 255, 0.22);
+  border-radius: 14px 14px 0 14px;
+}
+
+.other-msg .msg-text {
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 14px 14px 14px 0;
+}
+
+.deleted-msg .deleted-text {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.my-msg .deleted-text {
+  text-align: right;
+}
+
+.edited-badge {
+  font-size: 1rem;
+  color: #9a9a9a;
+}
+
+.msg-edit-btn,
+.msg-dlt-btn {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: 0.2s;
+}
+
+.msg-edit-btn:hover,
+.msg-dlt-btn:hover {
+  opacity: 1;
+}
+
+/* ---- Talk Editor ---- */
+
+.talk-editor-panel {
+  margin-top: var(--space-2);
+}
+
+.talk-editor {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+#talk-text {
+  flex: 1;
+  height: 10rem;
+  font-size: 1.4rem;
+}
+
+#send-talk {
+  width: 5rem;
+  height: 3rem;
+}
+
+/* ---- Midnight fragment Mode ---- */
+.mode-toggle {
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0.6rem;
+  background: rgba(255,255,255,0.07);
+  cursor: pointer;
+  transition: 0.25s ease;
+  user-select: none;
+  text-align: center;
+}
+
+.mode-toggle:hover {
+  background: rgba(255,255,255,0.16);
+}
+
+.mode-toggle.active-fade {
+  background: rgba(150, 100, 255, 0.22);
+  box-shadow: 0 0 8px rgba(150,100,255,0.4);
+}
+
+.mode-label {
+  font-size: 0.95rem;
+}
+
+.msg-fragment {
+  position: relative;
+  animation: fragmentFade 10s linear forwards;
+}
+
+@keyframes fragmentFade {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+  80% {
+    opacity: 0.4;
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+    filter: blur(3px);
+  }
+}
+
+/* ---- Responsive ---- */
+
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  .col-right {
+    width: 100%;
+    margin: 0;
+  }
+}

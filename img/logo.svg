@@ -1,0 +1,79 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="30 20 250 75"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Midnight Whisper Logo</title>
+  <desc id="desc">Wordmark logo with moon and stars for Midnight Whisper chat app</desc>
+
+  <style>
+    .mw-bg {
+      fill: none; 
+    }
+    .mw-text {
+      font-family: "Times New Roman", "Georgia", "Noto Serif JP", serif;
+      fill: #f7f3ff;
+      letter-spacing: 0.02em;
+    }
+    .mw-text-main {
+      font-weight: 600;
+    }
+    .mw-text-sub {
+      font-weight: 500;
+    }
+    .mw-accent {
+      fill: #a855f7; 
+    }
+    .mw-line {
+      stroke: #f7f3ff;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      opacity: 0.9;
+    }
+  </style>
+
+  <!-- 背景 -->
+  <rect class="mw-bg" x="0" y="0" width="320" height="120" rx="16" />
+
+  <!-- テキスト -->
+  <text class="mw-text mw-text-main" x="32" y="48" font-size="30">
+    Midnight
+  </text>
+  <text class="mw-text mw-text-sub" x="32" y="80" font-size="28">
+    Whisper
+  </text>
+
+  <!-- 下線 -->
+  <line class="mw-line" x1="32" y1="92" x2="220" y2="92" />
+
+  <!-- 月 + 星アクセント -->
+  <!-- 月 -->
+  <defs>
+    <mask id="mw-moon-mask">
+      <rect x="0" y="0" width="320" height="120" fill="black" />
+      <!-- 外側の円 -->
+      <circle cx="250" cy="42" r="18" fill="white" />
+      <!-- 右側を削る円 -->
+      <circle cx="255" cy="38" r="16" fill="black" />
+    </mask>
+  </defs>
+
+  <circle
+    cx="250"
+    cy="42"
+    r="18"
+    class="mw-accent"
+    mask="url(#mw-moon-mask)"
+  />
+
+  <!-- 星たち -->
+  <polygon
+    class="mw-accent"
+    points="272,22 274,26 278,27 274,29 272,33 270,29 266,27 270,26"
+  />
+  <polygon
+    class="mw-accent"
+    points="266,54 268,57 272,58 268,60 266,64 264,60 260,58 264,57"
+  />
+</svg>

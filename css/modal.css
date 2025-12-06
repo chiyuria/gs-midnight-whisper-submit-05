@@ -1,0 +1,74 @@
+.mk-hidden {
+  display: none !important;
+}
+
+.mk-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.mk-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--modal-backdrop, rgba(0, 0, 0, 0.55));
+  backdrop-filter: blur(3px);
+}
+
+.mk-box {
+  position: relative;
+  background: var(--modal-bg, var(--panel-deep));
+  padding: 2rem;
+  border-radius: var(--radius);
+  width: 28rem;
+
+  color: var(--fg);
+  box-shadow: var(--shadow);
+}
+
+.mk-box p {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--fg);
+}
+
+.mk-btn-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.6rem;
+}
+
+.mk-btn {
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+
+  background: var(--modal-btn, var(--brand-1));
+  color: var(--fg);
+  font-size: 1.2rem;
+
+  transition: 0.15s ease;
+}
+
+.mk-btn:hover {
+  background: var(--modal-btn-hover, var(--brand-2));
+}
+
+.mk-btn.cancel {
+  background: var(--modal-btn-cancel, #444);
+  color: var(--fg);
+}
+
+.mk-btn.cancel:hover {
+  background: var(--modal-btn-cancel-hover, #555);
+}
+
+#mk-modal-ok .mk-btn {
+  display: block;
+  margin: 1.4rem auto 0 auto;
+}

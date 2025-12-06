@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midnight Whisper</title>
+
+    <script src="./libs/jquery-3.7.1.min.js"></script>
+    <script type="module" src="./js/firebase/firebase_config.js"></script>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/forms.css" />
+    <link rel="stylesheet" href="./css/buttons.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="stylesheet" href="./css/toast.css" />
+  </head>
+
+  <body>
+    <header class="app-header">
+       <img src="./img/logo.svg" alt="Midnight Whisper Logo" class="header-logo" />
+    </header>
+
+    <div class="main-wrapper">
+
+      <!-- 本体から右カラムだけ分離 -->
+      <aside class="col col-right">
+        <h2 class="col-title">Ephemeral Chat</h2>
+
+        <div class="col-content jp-heavy">
+
+          <section class="panel">
+            <div id="talk-room" class="section-body talk-room"></div>
+          </section>
+
+          <section class="talk-editor-panel panel">
+            <div class="section-body talk-editor">
+              <textarea
+                name="talk-text"
+                id="talk-text"
+                class="input-base"
+                placeholder="Send with Ctrl+Enter"
+              ></textarea>
+              <button id="send-talk" class="btn btn-primary">send</button>
+            </div>
+          </section>
+
+          <section id="modeToggle" class="mode-toggle">
+            <div class="mode-label">Midnight Fragment Mode: OFF</div>
+          </section>
+
+        </div>
+      </aside>
+
+    </div>
+
+    <div id="mk-modal-ok" class="mk-modal mk-hidden">
+      <div class="mk-bg"></div>
+      <div class="mk-box">
+        <p id="mk-ok-msg"></p>
+
+        <div class="mk-btn-line">
+          <button id="mk-ok-btn" class="mk-btn">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mk-modal-confirm" class="mk-modal mk-hidden">
+      <div class="mk-bg"></div>
+      <div class="mk-box">
+        <p id="mk-confirm-msg"></p>
+
+        <div class="mk-btn-line">
+          <button id="mk-confirm-ok" class="mk-btn">OK</button>            
+          <button id="mk-confirm-cancel" class="mk-btn cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="./js/app/modal.js"></script>
+    <script src="./js/app/toast.js"></script>
+    <script type="module" src="./js/app/chat.js"></script>
+  </body>
+</html>
