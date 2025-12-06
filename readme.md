@@ -22,7 +22,7 @@ DOM 側では “溶けるように消える” アニメーション演出が�
 
 # ③アプリのデプロイURL
 
-（GitHub Pages 予定）
+https://chiyuria.github.io/gs-midnight-whisper-submit-05/
 
 ---
 
@@ -215,7 +215,7 @@ if (midnightMode) {
 
 ---
 
-# 🗂 ディレクトリ構成（正しい構成に修正済み）
+# 🗂 ディレクトリ構成
 
 ```
 .
@@ -372,7 +372,7 @@ meant to be seen once and never saved.**
 
 ---
 
-# 🗂 Directory Structure (accurate)
+# 🗂 Directory Structure
 
 ```
 .
