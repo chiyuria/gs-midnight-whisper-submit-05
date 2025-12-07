@@ -17,12 +17,13 @@ DOM 側では “溶けるように消える” アニメーション演出が�
 
 匿名利用のため、起動時にブラウザ側で
 **UUID（Crypto API）を生成 → そのユーザーIDでチャット参加**。
+※LAN公開（ローカルIP）などで `crypto.randomUUID()` が使えない環境向けに **UUIDフォールバックも実装**。
 
 ---
 
 # ③アプリのデプロイURL
 
-https://chiyuria.github.io/gs-midnight-whisper-submit-05/
+[https://chiyuria.github.io/gs-midnight-whisper-submit-05/](https://chiyuria.github.io/gs-midnight-whisper-submit-05/)
 
 ---
 
@@ -42,10 +43,10 @@ https://chiyuria.github.io/gs-midnight-whisper-submit-05/
 
 ---
 
-### ■ 2. UUID による匿名ユーザー管理
+### ■ 2. UUID による匿名ユーザー管理（フォールバック対応）
 
 `crypto.randomUUID()` を用いてユーザーごとに一意のIDを生成。
-ログイン不要で、送信者判定・編集権限判定が安全に実装できた。
+さらに、LAN公開（ローカルIP）では `crypto.randomUUID()` が使えない場合があるため、**UUIDフォールバック関数で代替生成**できるようにして、送信者判定・編集権限判定が安定して動くようにした。
 
 ---
 
@@ -71,14 +72,14 @@ Firebase の物理削除のタイミングがずれないよう調整。
 
 ---
 
-### ■ 5. UI は 1 画面構成でシンプル＋実用的に
+### ■ 5. UI は 1 画面構成でシンプル＋実用的に（レスポンシブ強化）
 
 * ダークUI
 * ガラス風メッセージバブル
 * Midnight Mode トグル
 * 編集・削除ボタン
 * 入力エリア固定
-* スマホ最適のレスポンシブ対応
+* スマホ最適のレスポンシブ対応（**`responsive.js` で `--app-height` を更新し、アドレスバーによる `100vh` のズレを抑制**）
 
 3カラムアプリからの切り出しだが、1カラム用に完全最適化した。
 
@@ -110,10 +111,11 @@ Firebase は **配列ではなく「キー付きオブジェクト」** でデ�
 
 ---
 
-### ■ UUID による匿名識別
+### ■ UUID による匿名識別（LAN公開対応）
 
 `crypto.randomUUID()` を用いた一時ユーザーID生成と、
 それを利用した **メッセージ所有者判定（編集・削除権）** の仕組みを理解するのに時間がかかった。
+また、ローカルIPでの動作確認時に Crypto API が使えないケースがあり、**フォールバック実装で安定化**した。
 
 ---
 
@@ -134,7 +136,7 @@ Firebase は **配列ではなく「キー付きオブジェクト」** でデ�
 
 ---
 
-# 🌙 **Midnight Whisper – README **
+# 🌙 Midnight Whisper – README 251208 update
 
 ---
 
@@ -186,7 +188,7 @@ Fragment で消えたメッセージは、
 
 * 初回ロード爆撃防止付きの toast 通知
 * Promise ベースの OK / Confirm モーダル
-* スマホ・PC両対応の単一画面UI
+* スマホ・PC両対応の単一画面UI（**`responsive.js` による `--app-height` 更新でスマホの縦ズレを軽減**）
 
 ---
 
@@ -232,7 +234,8 @@ if (midnightMode) {
 │   ├── app/
 │   │   ├── chat.js
 │   │   ├── modal.js
-│   │   └── toast.js
+│   │   ├── toast.js
+│   │   └── responsive.js   ← 追加（スマホ縦100%対策）
 │   ├── firebase/
 │   │   └── firebase_config.js
 │   └── libs/
@@ -254,14 +257,14 @@ if (midnightMode) {
 # 🔧 技術要素
 
 * Firebase Realtime Database
-* jQuery（MIT） 
+* jQuery（MIT）
 * PromiseベースUI
 * Toast通知
-* レスポンシブUI
+* レスポンシブUI（**`--app-height` / `responsive.js`**）
 
 ---
 
-# 🌙 Midnight Whisper – README (English Version)
+# 🌙 Midnight Whisper – README 251208 update
 
 ---
 
@@ -318,7 +321,7 @@ Midnight Whisper expresses that idea through animation, timing, and silence.
 
 * Toast notifications (with first-load suppression)
 * Promise-based modals (OK / Confirm)
-* Fully responsive single-screen layout
+* Fully responsive single-screen layout (**`responsive.js` updates `--app-height` to reduce mobile 100vh jumps**)
 
 ---
 
@@ -354,7 +357,7 @@ if (midnightMode) {
 * Midnight-inspired dark palette with purple accents
 * Glass-like message bubbles (blur + transparency)
 * Fragment animation expresses “feelings that fade”
-* One-page responsive design optimized for mobile
+* One-page responsive design optimized for mobile (with `--app-height` support)
 
 The visual theme represents
 **soft emotions that only appear at night,
@@ -368,7 +371,8 @@ meant to be seen once and never saved.**
 * Firebase Realtime Database
 * Promise-based modals
 * Toast notification system
-* Responsive layout
+* Responsive layout (**`responsive.js` + `--app-height`**)
+* Anonymous identity via UUID (**with fallback for non-secure/LAN access**)
 
 ---
 
@@ -389,7 +393,8 @@ meant to be seen once and never saved.**
 │   ├── app/
 │   │   ├── chat.js
 │   │   ├── modal.js
-│   │   └── toast.js
+│   │   ├── toast.js
+│   │   └── responsive.js   ← added (mobile viewport fix)
 │   ├── firebase/
 │   │   └── firebase_config.js
 │   └── libs/
@@ -417,6 +422,7 @@ meant to be seen once and never saved.**
 * Promise-driven modal UI
 * State management (editingKey / initialized / midnightMode)
 * Designing a clean single-screen chat interface
+* Handling mobile viewport quirks with `--app-height`
 
 ---
 

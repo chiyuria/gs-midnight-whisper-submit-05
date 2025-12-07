@@ -4,7 +4,7 @@ import {
   push,
   set,
   get,
-  remove, //middnight fragment mode用に追加
+  remove, //midnight fragment mode用に追加
   update, //論理削除用に追加
   onChildAdded,
   onChildRemoved,
@@ -23,10 +23,35 @@ get(dbRef).then(function () {
   initialized = true;
 });
 
-// ユーザー固有IDを生成
+//UUIDフォールバック LAN公開だと動かない可能性
+function getUUID() {
+  const uuidCharacters = "123456789abcdef";
+  let uuid = ["xxxxxxxx", "xxxx", "4xxx", "yxxx", "xxxxxxxxxxxx"].join("-");
+
+  let result = "";
+
+  for (let i = 0; i < uuid.length; i++) {
+    const char = uuid[i];
+
+    if (char === "x") {
+      const r = Math.floor(Math.random() * 16);
+      result += uuidCharacters[r];
+    } else if (char === "y") {
+      const yCharacters = ["8", "9", "a", "b"];
+      const r = Math.floor(Math.random() * 4);
+      result += yCharacters[r];
+    } else {
+      result += char;
+    }
+  }
+
+  return result;
+}
+
 let userid = localStorage.getItem("userid");
+
 if (!userid) {
-  userid = crypto.randomUUID();
+  userid = getUUID();
   localStorage.setItem("userid", userid);
 }
 
@@ -125,7 +150,6 @@ onChildAdded(dbRef, function (data) {
         </div>
     `;
       $("#talk-room").append(html);
-
     } else {
       let html = `
         <div class="other-msg deleted-msg" data-key="${key}">
@@ -157,7 +181,6 @@ onChildAdded(dbRef, function (data) {
         </div>
     `;
     $("#talk-room").append(html);
-
   } else {
     let html = `
         <div class="msg other-msg" data-userid="${msg.userid}" data-key="${key}">
